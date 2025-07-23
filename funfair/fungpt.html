@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FunGPT - Ask Smart AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: white;
+      margin-top: 50px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #funGptResponse {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #444;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🤖 Ask FunGPT</h1>
+    <input type="text" id="funGptInput" placeholder="Enter your serious question..."/>
+    <button onclick="askFunGpt()">Ask</button>
+    <div id="funGptResponse"></div>
+  </div>
+
+  <script>
+    function askFunGpt() {
+      const input = document.getElementById("funGptInput").value.toLowerCase();
+      const responseDiv = document.getElementById("funGptResponse");
+
+      // Oddiy test rejimdagi sun’iy intellekt javoblari
+      if (input.includes("how to create a game")) {
+        responseDiv.innerText = "To create a game, you can use HTML5, CSS, and JavaScript. Start with a simple idea like Tic-Tac-Toe.";
+      } else if (input.includes("who created this site")) {
+        responseDiv.innerText = "This site was created by Abdulloh and his assistant AI from OpenAI. 🎯";
+      } else if (input.includes("what is funfair")) {
+        responseDiv.innerText = "FunFair is a fun website full of games, challenges, typing tests, and smart AI assistants!";
+      } else {
+        responseDiv.innerText = "Hmm... I'm still learning! Try asking another serious question.";
+      }
+    }
+  </script>
+
+</body>
+</html>

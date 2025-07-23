@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fun Type | FunFair</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    #typing {
+      font-size: 24px;
+      white-space: pre;
+      border-right: 2px solid #00ff00;
+      padding: 10px;
+    }
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #00ff00;
+      color: black;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #33ff33;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="typing">Loading Fun Type...</div>
+  <button onclick="showNextText()">Next Joke</button>
+
+  <script>
+    const funTexts = [
+      "Men qovun bilan WiFi ulangandek his qildim...",
+      "Bugun men nonushta qildim... telefon orqali!",
+      "Kompaniyam: 'Qizil chiroq' – to‘xta, kul!",
+      "Men robot emasman, men pishiriqman 🍪",
+      "Zaryadga qo‘yilmaydigan odam – bu men.",
+      "Pastga qarama! Hali yuqoriga ham kerak emas!",
+      "Sen o'ylayotgan narsa men o'ylayotgan narsa emas 🤯",
+      "Bir dona non bilan men internetni o‘chiraman 😂"
+    ];
+
+    let currentIndex = 0;
+
+    function typeText(text, i = 0) {
+      const typingDiv = document.getElementById("typing");
+      typingDiv.textContent = text.slice(0, i) + (i % 2 === 0 ? "|" : "");
+      if (i < text.length) {
+        setTimeout(() => typeText(text, i + 1), 70);
+      }
+    }
+
+    function showNextText() {
+      const randomIndex = Math.floor(Math.random() * funTexts.length);
+      currentIndex = randomIndex;
+      typeText(funTexts[currentIndex]);
+    }
+
+    // Boshlang‘ich matn
+    window.onload = () => {
+      showNextText();
+      setInterval(showNextText, 5000); // Har 5 sekundda yangi kulgi
+    };
+  </script>
+</body>
+</html>

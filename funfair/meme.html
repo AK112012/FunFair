@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Meme Generator | FunFair</title>
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #memeCanvas {
+            border: 2px solid white;
+            margin-top: 20px;
+        }
+
+        input,
+        button {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🖼️ Meme Generator</h1>
+
+    <input type="file" id="imageInput" accept="image/*"><br>
+    <input type="text" id="topText" placeholder="Top text"><br>
+    <input type="text" id="bottomText" placeholder="Bottom text"><br>
+    <button onclick="generateMeme()">Generate Meme</button><br>
+
+    <canvas id="memeCanvas" width="500" height="500"></canvas>
+
+    <script>
+        const canvas = document.getElementById('memeCanvas');
+        const ctx = canvas.getContext('2d');
+        let image = new Image();
+
+        document.getElementById('imageInput').addEventListener('change', function () {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                image.onload = () => drawMeme();
+                image.src = event.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        function drawMeme() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            const topText = document.getElementById('topText').value.toUpperCase();
+            const bottomText = document.getElementById('bottomText').value.toUpperCase();
+
+            ctx.font = '30px Impact';
+            ctx.fillStyle = 'white';
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 2;
+            ctx.textAlign = 'center';
+
+            ctx.fillText(topText, canvas.width / 2, 40);
+            ctx.strokeText(topText, canvas.width / 2, 40);
+
+            ctx.fillText(bottomText, canvas.width / 2, canvas.height - 20);
+            ctx.strokeText(bottomText, canvas.width / 2, canvas.height - 20);
+        }
+
+        function generateMeme() {
+            drawMeme();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+.menu a {
+  display: inline-block;
+  background: #00cc66;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: #00994d;
+}
+
+.menu a {
+  display: inline-block;
+  background: #6c5ce7;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: #5e50c7;
+}

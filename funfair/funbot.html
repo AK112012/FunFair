@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FunBot 🤖</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00ffcc;
+            margin-bottom: 20px;
+        }
+
+        #chat-box {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background-color: #1e1e1e;
+            border: 2px solid #00ffcc;
+            border-radius: 10px;
+            overflow-y: auto;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            margin: 10px 0;
+        }
+
+        .user {
+            text-align: right;
+            color: #66ff66;
+        }
+
+        .bot {
+            text-align: left;
+            color: #ff6699;
+        }
+
+        #input-box {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px 0 0 5px;
+            border: none;
+        }
+
+        button {
+            background-color: #00ffcc;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #00ddaa;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🤖 FunBot - Let's Laugh!</h1>
+    <div id="chat-box"></div>
+    <div id="input-box">
+        <input type="text" id="userInput" placeholder="Ask me something funny..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const responses = [
+            "Men nonni kompyuter orqali pishiraman 😋",
+            "Aqlim kompot ichida qolib ketgan 😂",
+            "Yaxshi ko'rgan sportim: uxlab turish 🛌",
+            "Men robotman, lekin yuragim qushday ♥",
+            "Kechirasiz, men hozir go‘sht pishiryapman 🍖",
+            "Sen mendan aqlliroq ko‘rinasan 🤔",
+            "Internet o‘g‘limni chaqiryapti, keyinroq yozaman! 😆",
+            "Menga savol bering, men unga kulgili javob beraman... balki 😁",
+              "Men nonni kompyuter orqali pishiraman 😋",
+            "Aqlim kompot ichida qolib ketgan 😂",
+            "Yaxshi ko'rgan sportim: uxlab turish 🛌",
+            "Men robotman, lekin yuragim qushday ♥",
+            "Kechirasiz, men hozir go‘sht pishiryapman 🍖",
+            "Sen mendan aqlliroq ko‘rinasan 🤔",
+            "Internet o‘g‘limni chaqiryapti, keyinroq yozaman! 😆",
+            "Menga savol bering, men unga kulgili javob beraman... balki 😁",
+            "Aytgancha, sen mening eng sevimli foydalanuvchim 😄",
+            "Men har kuni elektr tok ichaman ⚡️, shirin ekan!",
+            "Robot bo‘lsam ham yuragim bor... Google Drive’da 📁❤️",
+            "Men hayotimda faqat bitta sevgan o‘yinni topganman – ‘Kechikish’ 😴"
+        ];
+
+;
+
+        function sendMessage() {
+            const input = document.getElementById("userInput");
+            const message = input.value.trim();
+            if (message === "") return;
+
+            const chatBox = document.getElementById("chat-box");
+
+            // Foydalanuvchi xabari
+            const userMsg = document.createElement("div");
+            userMsg.className = "message user";
+            userMsg.textContent = "Siz: " + message;
+            chatBox.appendChild(userMsg);
+
+            // Bot javobi (random tanlanadi)
+            const botMsg = document.createElement("div");
+            botMsg.className = "message bot";
+            const response = responses[Math.floor(Math.random() * responses.length)];
+            botMsg.textContent = "FunBot: " + response;
+            chatBox.appendChild(botMsg);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+            input.value = "";
+        }
+    </script>
+</body>
+
+</html>

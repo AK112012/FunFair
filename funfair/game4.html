@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FunFair - Memory Match</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #aaa;
+            cursor: pointer;
+            background-size: cover;
+        }
+
+        .matched {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🧠 Memory Match</h1>
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const images = [
+            "https://i.ibb.co/n0Y93MZ/1.png",
+            "https://i.ibb.co/dJf8x0S/2.png",
+            "https://i.ibb.co/SrsmT4r/3.png",
+            "https://i.ibb.co/bFc6vNM/4.png",
+            "https://i.ibb.co/wg8frDn/5.png",
+            "https://i.ibb.co/hMBZ3t9/6.png",
+        ];
+
+        let cards = [...images, ...images]; // duplicate for pairs
+        cards.sort(() => 0.5 - Math.random()); // shuffle
+
+        const grid = document.getElementById("grid");
+        let firstCard = null;
+        let lock = false;
+
+        cards.forEach((src, index) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.dataset.index = index;
+            card.dataset.src = src;
+            card.style.backgroundImage = "url('https://i.ibb.co/8g9BBpS/question.png')";
+            grid.appendChild(card);
+        });
+
+        grid.addEventListener("click", e => {
+            const card = e.target;
+            if (!card.classList.contains("card") || card.classList.contains("matched") || lock) return;
+
+            const src = card.dataset.src;
+            card.style.backgroundImage = `url(${src})`;
+
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                lock = true;
+                setTimeout(() => {
+                    if (firstCard.dataset.src === card.dataset.src && firstCard !== card) {
+                        firstCard.classList.add("matched");
+                        card.classList.add("matched");
+                    } else {
+                        firstCard.style.backgroundImage = "url('https://i.ibb.co/8g9BBpS/question.png')";
+                        card.style.backgroundImage = "url('https://i.ibb.co/8g9BBpS/question.png')";
+                    }
+                    firstCard = null;
+                    lock = false;
+                }, 800);
+            }
+        });
+    </script>
+</body>
+
+</html>
